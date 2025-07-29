@@ -181,7 +181,7 @@ def is_device_authenticated(module_client, method_request):
         
         headers = {'x-ausa-device-auth': f'Bearer {device_token}'}
         
-        async with httpx.Client(http2=True) as client:
+        with httpx.Client(http2=True) as client:
             response = client.get(f"{MAIN_SERVER_URI}/device/me", headers=headers)
             
         if response.status_code == 200:
