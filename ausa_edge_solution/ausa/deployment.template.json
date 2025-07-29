@@ -82,6 +82,10 @@
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
+            "env": {
+              "HOST": {"value": "broker_alton"},
+              "MAIN_SERVER": {"value": "api.ausa.health"}
+            },
             "settings": {
               "image": "${MODULES.flutter_subscriber}",
               "createOptions": {}
