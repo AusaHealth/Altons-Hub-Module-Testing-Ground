@@ -76,6 +76,16 @@
                 }
               }
             }
+          },
+          "flutter_subscriber": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.flutter_subscriber}",
+              "createOptions": {}
+            }
           }
         }
       }
@@ -84,7 +94,8 @@
       "properties.desired": {
         "schemaVersion": "1.0",
         "routes": {
-          "broker_altonToIoTHub": "FROM /messages/modules/broker_alton/outputs/* INTO $upstream"
+          "broker_altonToIoTHub": "FROM /messages/modules/broker_alton/outputs/* INTO $upstream",
+          "flutter_subscriberToIoTHub": "FROM /messages/modules/flutter_subscriber/outputs/* INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200

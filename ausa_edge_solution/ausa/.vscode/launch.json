@@ -37,6 +37,43 @@
       "windows": {
         "program": "${workspaceFolder}\\modules\\broker_alton\\main.py"
       }
+    },
+    {
+      "name": "flutter_subscriber Remote Debug (Python)",
+      "type": "python",
+      "request": "attach",
+      "port": 5678,
+      "host": "localhost",
+      "logToFile": true,
+      "redirectOutput": true,
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}/modules/flutter_subscriber",
+          "remoteRoot": "/app"
+        }
+      ],
+      "windows": {
+        "pathMappings": [
+          {
+            "localRoot": "${workspaceFolder}\\modules\\flutter_subscriber",
+            "remoteRoot": "/app"
+          }
+        ]
+      }
+    },
+    {
+      "name": "flutter_subscriber Local Debug (Python)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/modules/flutter_subscriber/main.py",
+      "console": "integratedTerminal",
+      "env": {
+        "EdgeHubConnectionString": "${config:azure-iot-edge.EdgeHubConnectionString}",
+        "EdgeModuleCACertificateFile": "${config:azure-iot-edge.EdgeModuleCACertificateFile}"
+      },
+      "windows": {
+        "program": "${workspaceFolder}\\modules\\flutter_subscriber\\main.py"
+      }
     }
   ]
 }
