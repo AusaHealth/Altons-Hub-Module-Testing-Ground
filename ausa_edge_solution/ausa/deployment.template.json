@@ -83,11 +83,25 @@
             "status": "running",
             "restartPolicy": "always",
             "env": {
-              "HOST": {"value": "broker_alton"},
-              "MAIN_SERVER": {"value": "api.ausa.health"}
+              "HOST": {
+                "value": "broker_alton"
+              },
+              "MAIN_SERVER": {
+                "value": "api.ausa.health"
+              }
             },
             "settings": {
               "image": "${MODULES.flutter_subscriber}",
+              "createOptions": {}
+            }
+          },
+          "data_storage": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.data_storage}",
               "createOptions": {}
             }
           }
@@ -99,7 +113,8 @@
         "schemaVersion": "1.0",
         "routes": {
           "broker_altonToIoTHub": "FROM /messages/modules/broker_alton/outputs/* INTO $upstream",
-          "flutter_subscriberToIoTHub": "FROM /messages/modules/flutter_subscriber/outputs/* INTO $upstream"
+          "flutter_subscriberToIoTHub": "FROM /messages/modules/flutter_subscriber/outputs/* INTO $upstream",
+          "data_storageToIoTHub": "FROM /messages/modules/data_storage/outputs/* INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200
