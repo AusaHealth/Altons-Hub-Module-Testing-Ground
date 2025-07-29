@@ -143,6 +143,14 @@
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
+            "env": {
+              "DATABASE_HOST": {
+                "value": "data_storage"
+              },
+              "BROKER_HOST": {
+                "value": "broker_alton"
+              }
+            },
             "settings": {
               "image": "${MODULES.data_storage_subscriber}",
               "createOptions": {}

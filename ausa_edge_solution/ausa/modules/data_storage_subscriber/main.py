@@ -26,6 +26,7 @@ logging.basicConfig(
 
 # Environment broker config
 BROKER_HOST = os.getenv("BROKER_HOST", "localhost")
+BROKER_PORT = int(os.getenv("BROKER_PORT", 2883))
 
 # Handler type: (pattern, qos, callback)
 subscriptions: List[Tuple[str, int, Callable[[str, str], None]]] = []
@@ -103,7 +104,7 @@ async def message_receiver():
     for key, value in os.environ.items():
         logger.info(f"{key}: {value}")
     client = MQTTClient()
-    await client.connect(f"mqtt://{BROKER_HOST}:1883/")
+    await client.connect(f"mqtt://{BROKER_HOST}:{BROKER_PORT}/")
 
     # Build subscription list
     topic_qos_list = [(pattern, qos) for pattern, qos, _ in subscriptions]
