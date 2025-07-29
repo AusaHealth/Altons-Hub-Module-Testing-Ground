@@ -135,6 +135,29 @@
                 }
               }
             }
+          },
+          "sync_to_cloud": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.sync_to_cloud.debug}",
+              "createOptions": {
+                "ExposedPorts": {
+                  "5678/tcp": {}
+                },
+                "HostConfig": {
+                  "PortBindings": {
+                    "5678/tcp": [
+                      {
+                        "HostPort": "5678"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -146,7 +169,8 @@
           "broker_altonToIoTHub": "FROM /messages/modules/broker_alton/outputs/* INTO $upstream",
           "sensorTobroker_alton": "FROM /messages/modules/SimulatedTemperatureSensor/outputs/temperatureOutput INTO BrokeredEndpoint(\"/modules/broker_alton/inputs/input1\")",
           "flutter_subscriberToIoTHub": "FROM /messages/modules/flutter_subscriber/outputs/* INTO $upstream",
-          "data_storageToIoTHub": "FROM /messages/modules/data_storage/outputs/* INTO $upstream"
+          "data_storageToIoTHub": "FROM /messages/modules/data_storage/outputs/* INTO $upstream",
+          "sync_to_cloudToIoTHub": "FROM /messages/modules/sync_to_cloud/outputs/* INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200

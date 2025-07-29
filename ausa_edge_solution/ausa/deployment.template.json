@@ -102,6 +102,34 @@
             "restartPolicy": "always",
             "settings": {
               "image": "${MODULES.data_storage}",
+              "createOptions": {
+                "HostConfig": {
+                  "PortBindings": {
+                    "4001/tcp": [
+                      {
+                        "HostPort": "4001"
+                      }
+                    ],
+                    "4002/tcp": [
+                      {
+                        "HostPort": "4002"
+                      }
+                    ]
+                  },
+                  "Binds": [
+                    "/:/rqlite/file/db"
+                  ]
+                }
+              }
+            }
+          },
+          "sync_to_cloud": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.sync_to_cloud}",
               "createOptions": {}
             }
           }
@@ -114,7 +142,8 @@
         "routes": {
           "broker_altonToIoTHub": "FROM /messages/modules/broker_alton/outputs/* INTO $upstream",
           "flutter_subscriberToIoTHub": "FROM /messages/modules/flutter_subscriber/outputs/* INTO $upstream",
-          "data_storageToIoTHub": "FROM /messages/modules/data_storage/outputs/* INTO $upstream"
+          "data_storageToIoTHub": "FROM /messages/modules/data_storage/outputs/* INTO $upstream",
+          "sync_to_cloudToIoTHub": "FROM /messages/modules/sync_to_cloud/outputs/* INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200
