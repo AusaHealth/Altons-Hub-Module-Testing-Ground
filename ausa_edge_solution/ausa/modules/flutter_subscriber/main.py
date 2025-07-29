@@ -13,7 +13,7 @@ from azure.iot.device.iothub.aio import IoTHubModuleClient
 from handlers.handlers import authenticate_device, is_user_authenticated, get_users_from_twin, \
     api_request, authenticate_device_topic_handler, authenticate_user_topic_handler, \
     is_device_authenticated_topic_handler, is_user_authenticated_topic_handler, get_users_from_twin_topic_handler, \
-    api_request_topic_handler,is_device_authenticated
+    api_request_topic_handler,is_device_authenticated,authenticate_user
 
 # Setup logging
 logger = logging.getLogger(__name__)
