@@ -128,8 +128,23 @@
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
+            "env": {
+              "HOST": {
+                "value": "data_storage"
+              }
+            },
             "settings": {
               "image": "${MODULES.sync_to_cloud}",
+              "createOptions": {}
+            }
+          },
+          "data_storage_subscriber": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.data_storage_subscriber}",
               "createOptions": {}
             }
           }
@@ -143,7 +158,8 @@
           "broker_altonToIoTHub": "FROM /messages/modules/broker_alton/outputs/* INTO $upstream",
           "flutter_subscriberToIoTHub": "FROM /messages/modules/flutter_subscriber/outputs/* INTO $upstream",
           "data_storageToIoTHub": "FROM /messages/modules/data_storage/outputs/* INTO $upstream",
-          "sync_to_cloudToIoTHub": "FROM /messages/modules/sync_to_cloud/outputs/* INTO $upstream"
+          "sync_to_cloudToIoTHub": "FROM /messages/modules/sync_to_cloud/outputs/* INTO $upstream",
+          "data_storage_subscriberToIoTHub": "FROM /messages/modules/data_storage_subscriber/outputs/* INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200

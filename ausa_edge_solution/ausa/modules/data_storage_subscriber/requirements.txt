@@ -1,0 +1,6 @@
+amqtt==0.10.1
+requests==2.31.0
+azure-iot-device~=2.7.0
+cryptography==45.0.3
+httpx[http2]==0.24.1
+pyrqlite @ git+https://github.com/rqlite/pyrqlite.git@46c2c952ca8adeec18353a3af1a5de955fe5eaa7
