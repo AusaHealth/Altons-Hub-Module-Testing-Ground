@@ -161,6 +161,11 @@
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
+            "env": {
+              "HOST": {
+                "value": "broker_alton"
+              }
+            },
             "settings": {
               "image": "${MODULES.hardware_scanner_subscriber}",
               "createOptions": {}
