@@ -2,10 +2,12 @@ FROM arm32v7/python:3.7-slim-bullseye
 
 WORKDIR /app
 
-# Install system dependencies for WiFi scanning
+# Install system dependencies for WiFi scanning and Python package compilation
 RUN apt-get update && apt-get install -y \
     wireless-tools \
     iw \
+    gcc \
+    python3-dev \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt ./
