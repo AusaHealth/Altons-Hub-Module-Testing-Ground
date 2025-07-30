@@ -3,10 +3,7 @@ FROM arm64v8/python:3.9-slim-bullseye
 WORKDIR /app
 
 COPY requirements.txt ./
-RUN sed -i 's|http://deb.debian.org|http://archive.debian.org|g' /etc/apt/sources.list && \
-    sed -i 's|security.debian.org|archive.debian.org|g' /etc/apt/sources.list && \
-    echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until && \
-    apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
     git \
     gcc \
     build-essential \
