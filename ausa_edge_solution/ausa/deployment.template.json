@@ -178,7 +178,15 @@
             "restartPolicy": "always",
             "settings": {
               "image": "${MODULES.wifi_tester}",
-              "createOptions": {}
+              "createOptions": {
+                "HostConfig": {
+                  "CapAdd": [
+                    "NET_ADMIN",
+                    "NET_RAW"
+                  ],
+                  "Privileged": true
+                }
+              }
             }
           }
         }
