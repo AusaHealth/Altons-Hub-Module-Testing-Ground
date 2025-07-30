@@ -1,0 +1,16 @@
+FROM arm32v7/python:3.7-slim-buster
+
+WORKDIR /app
+
+# Install system dependencies for WiFi scanning
+RUN apt-get update && apt-get install -y \
+    wireless-tools \
+    iw \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+
+COPY . .
+
+CMD [ "python3", "-u", "./main.py" ]
