@@ -21,6 +21,7 @@ logging.basicConfig(
 )
 
 BROKER_HOST = os.getenv("HOST", "localhost")
+BROKER_PORT = int(os.getenv("BROKER_PORT", 2883))
 
 # Handler type: (pattern, qos, callback)
 subscriptions: List[Tuple[str, int, Callable[[str, str], bytes]]] = []
@@ -39,7 +40,7 @@ async def message_receiver():
     azure_iot_edge_client.on_twin_desired_properties_patch_received = twin_patch_handler
 
     client = MQTTClient()
-    await client.connect(f"mqtt://{BROKER_HOST}:1883/")
+    await client.connect(f"mqtt://{BROKER_HOST}:{BROKER_PORT}/")
     topic_qos_list = [(pattern, qos) for pattern, qos, _ in subscriptions]
     await client.subscribe(topic_qos_list)
     logger.info(f"Subscribed to topics: {topic_qos_list}")
