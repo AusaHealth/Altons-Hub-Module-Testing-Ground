@@ -185,6 +185,43 @@
       "windows": {
         "program": "${workspaceFolder}\\modules\\data_storage_subscriber\\main.py"
       }
+    },
+    {
+      "name": "hardware_scanner_subscriber Remote Debug (Python)",
+      "type": "python",
+      "request": "attach",
+      "port": 5678,
+      "host": "localhost",
+      "logToFile": true,
+      "redirectOutput": true,
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}/modules/hardware_scanner_subscriber",
+          "remoteRoot": "/app"
+        }
+      ],
+      "windows": {
+        "pathMappings": [
+          {
+            "localRoot": "${workspaceFolder}\\modules\\hardware_scanner_subscriber",
+            "remoteRoot": "/app"
+          }
+        ]
+      }
+    },
+    {
+      "name": "hardware_scanner_subscriber Local Debug (Python)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/modules/hardware_scanner_subscriber/main.py",
+      "console": "integratedTerminal",
+      "env": {
+        "EdgeHubConnectionString": "${config:azure-iot-edge.EdgeHubConnectionString}",
+        "EdgeModuleCACertificateFile": "${config:azure-iot-edge.EdgeModuleCACertificateFile}"
+      },
+      "windows": {
+        "program": "${workspaceFolder}\\modules\\hardware_scanner_subscriber\\main.py"
+      }
     }
   ]
 }

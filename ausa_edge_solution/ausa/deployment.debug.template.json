@@ -181,6 +181,29 @@
                 }
               }
             }
+          },
+          "hardware_scanner_subscriber": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.hardware_scanner_subscriber.debug}",
+              "createOptions": {
+                "ExposedPorts": {
+                  "5678/tcp": {}
+                },
+                "HostConfig": {
+                  "PortBindings": {
+                    "5678/tcp": [
+                      {
+                        "HostPort": "5678"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -194,7 +217,8 @@
           "flutter_subscriberToIoTHub": "FROM /messages/modules/flutter_subscriber/outputs/* INTO $upstream",
           "data_storageToIoTHub": "FROM /messages/modules/data_storage/outputs/* INTO $upstream",
           "sync_to_cloudToIoTHub": "FROM /messages/modules/sync_to_cloud/outputs/* INTO $upstream",
-          "data_storage_subscriberToIoTHub": "FROM /messages/modules/data_storage_subscriber/outputs/* INTO $upstream"
+          "data_storage_subscriberToIoTHub": "FROM /messages/modules/data_storage_subscriber/outputs/* INTO $upstream",
+          "hardware_scanner_subscriberToIoTHub": "FROM /messages/modules/hardware_scanner_subscriber/outputs/* INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200

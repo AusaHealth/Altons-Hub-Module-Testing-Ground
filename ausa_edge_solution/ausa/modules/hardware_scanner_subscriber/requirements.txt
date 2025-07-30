@@ -1,0 +1,9 @@
+amqtt==0.10.1
+bleak==0.20.2
+azure-iot-device~=2.7.0
+cryptography==45.0.3
+comtypes==1.4.6
+pywifi==1.1.12
+PyBluez==0.30
+
+
