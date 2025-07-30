@@ -184,7 +184,11 @@
                     "NET_ADMIN",
                     "NET_RAW"
                   ],
-                  "Privileged": true
+                  "Privileged": true,
+                  "Binds": [
+                    "/sys/class/net:/sys/class/net:ro",
+                    "/proc/net:/proc/net:ro"
+                  ]
                 }
               }
             }
